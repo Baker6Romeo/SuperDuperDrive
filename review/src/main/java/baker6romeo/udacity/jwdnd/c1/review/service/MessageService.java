@@ -1,42 +1,20 @@
 package baker6romeo.udacity.jwdnd.c1.review.service;
 
+import baker6romeo.udacity.jwdnd.c1.review.mapper.ChatMessageMapper;
 import baker6romeo.udacity.jwdnd.c1.review.model.ChatForm;
 import baker6romeo.udacity.jwdnd.c1.review.model.ChatMessage;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class MessageService {
 
-    //private String message;
     private List<ChatMessage> chatMessages; // Initialized in @PostConstruct method
+    private ChatMessageMapper chatMessageMapper;
 
-    //
-    // no longer needed...apparently
-    //
-//    MessageService(String message){
-//        this.message = message;
-//    }
-//
-//    public void addMessage(ChatForm chatForm){
-//        this.chatMessages.add(chatForm);
-//    }
-//
-//    public String lowercase(){
-//        return this.message.toLowerCase();
-//    }
-//
-//    public String uppercase(){
-//        return this.message.toUpperCase();
-//    }
-
-    @PostConstruct
-    public void postConstruct(){
-        System.out.println("Creating Message Service Bean");
-        this.chatMessages = new ArrayList<>();
+    public MessageService(ChatMessageMapper chatMessageMapper) {
+        this.chatMessageMapper = chatMessageMapper;
     }
 
     public void addMessage(ChatForm chatForm) {
@@ -53,10 +31,10 @@ public class MessageService {
                 newMessage.setMessage(chatForm.getMessageText().toLowerCase());
                 break;
         }
-        this.chatMessages.add(newMessage);
+        chatMessageMapper.insert(newMessage);
     }
 
     public List<ChatMessage> getChatMessages() {
-        return  chatMessages;
+        return  chatMessageMapper.getMessages();
     }
 }

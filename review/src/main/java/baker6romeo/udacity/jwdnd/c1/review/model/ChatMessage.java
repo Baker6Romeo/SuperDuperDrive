@@ -5,6 +5,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class ChatMessage {
 
+    private String message;
+    private Integer messageId;
+    private String username;
+
     public String getMessage() {
         return message;
     }
@@ -20,8 +24,5 @@ public class ChatMessage {
     public void setUsername(String username) {
         this.username = username;
     }
-
-    private String message;
-    private String username;
 
 }

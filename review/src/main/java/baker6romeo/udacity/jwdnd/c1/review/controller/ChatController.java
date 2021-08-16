@@ -2,6 +2,7 @@ package baker6romeo.udacity.jwdnd.c1.review.controller;
 
 import baker6romeo.udacity.jwdnd.c1.review.model.ChatForm;
 import baker6romeo.udacity.jwdnd.c1.review.service.MessageService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,19 +24,19 @@ public class ChatController {
        this.messageService = messageService;
    }
 
-   @GetMapping("/chat")
+   @GetMapping()
    public String getChatPage(ChatForm chatForm, Model model) {
        model.addAttribute("chatMessages", this.messageService.getChatMessages());
        return "chat";
    }
 
 
-   @PostMapping("/chat")
-   //public void  addMessage(@ModelAttribute("chatForm") ChatForm chatForm){
-   public String postChatMessage(ChatForm chatForm, Model model) {
-       //if(!isCleanMessage(chatForm.getMessageText())) {
+   @PostMapping()
+   public String postChatMessage(Authentication authentication, ChatForm chatForm, Model model) {
+       chatForm.setUsername(authentication.getName());
+       if(!isCleanMessage(chatForm.getMessageText())) {
            this.messageService.addMessage(chatForm);
-       //}
+       }
        chatForm.setMessageText("");    // clear the message form
        model.addAttribute("chatMessages", this.messageService.getChatMessages());  // update the message display
        return "chat";
