@@ -11,3 +11,4 @@ messageid INT PRIMARY KEY auto_increment,
 username VARCHAR NOT NULL,
 messagetext VARCHAR NOT NULL
 );
+INSERT INTO MESSAGES (messageid, messagetext, username) VALUES(1, 'Word', 'Beyonce');

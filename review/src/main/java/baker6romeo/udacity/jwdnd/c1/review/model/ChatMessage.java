@@ -9,6 +9,14 @@ public class ChatMessage {
     private Integer messageId;
     private String username;
 
+    public Integer getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(Integer messageId) {
+        this.messageId = messageId;
+    }
+
     public String getMessage() {
         return message;
     }
