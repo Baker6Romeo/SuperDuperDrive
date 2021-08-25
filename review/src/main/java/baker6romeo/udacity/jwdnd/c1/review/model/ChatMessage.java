@@ -21,11 +21,11 @@ public class ChatMessage {
         this.username = username;
     }
 
-    public String getMessage() {
+    public String getMessageText() {
         return messageText;
     }
 
-    public void setMessage(String messageText) {
+    public void setMessageText(String messageText) {
         this.messageText = messageText;
     }
 

@@ -23,16 +23,16 @@ public class MessageService {
         System.out.println(newMessage.getUsername());
         switch (chatForm.getMessageType()) {
             case "Say":
-                newMessage.setMessage(chatForm.getMessageText());
-                System.out.println(newMessage.getMessage());
+                newMessage.setMessageText(chatForm.getMessageText());
+                System.out.println(newMessage.getMessageText());
                 break;
             case "Shout":
-                newMessage.setMessage(chatForm.getMessageText().toUpperCase());
-                System.out.println(newMessage.getMessage());
+                newMessage.setMessageText(chatForm.getMessageText().toUpperCase());
+                System.out.println(newMessage.getMessageText());
                 break;
             case "Whisper":
-                newMessage.setMessage(chatForm.getMessageText().toLowerCase());
-                System.out.println(newMessage.getMessage());
+                newMessage.setMessageText(chatForm.getMessageText().toLowerCase());
+                System.out.println(newMessage.getMessageText());
                 break;
         }
         int result = chatMessageMapper.insert(newMessage);
@@ -42,7 +42,7 @@ public class MessageService {
     public List<ChatMessage> getChatMessages() {
         System.out.println("Getting Messages!");
         for (ChatMessage message : chatMessageMapper.getMessages()) {
-            System.out.println(message.getMessage());
+            System.out.println(message.getMessageText());
         }
         return  chatMessageMapper.getMessages();
     }
