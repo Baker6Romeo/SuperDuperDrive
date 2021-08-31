@@ -33,8 +33,8 @@ public class SignupPage {
         inputFirstName.sendKeys(firstname);
     }
 
-    public void enterLastname(String firstname) {
-        inputFirstName.sendKeys(firstname);
+    public void enterLastname(String lastname) {
+        inputLastName.sendKeys(lastname);
     }
 
     public void enterUsername(String username) {

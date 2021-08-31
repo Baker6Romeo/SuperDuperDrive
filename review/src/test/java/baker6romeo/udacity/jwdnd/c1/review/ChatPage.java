@@ -1,5 +1,6 @@
 package baker6romeo.udacity.jwdnd.c1.review;
 
+import baker6romeo.udacity.jwdnd.c1.review.model.ChatMessage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +18,13 @@ public class ChatPage {
     @FindBy(id = "submit-button")
     private WebElement submitButton;
 
-    Select select = new Select(messageType);
+    @FindBy(className = "chatMessageText")
+    private WebElement firstChatMessage;
+
+    @FindBy(className = "chatMessageUsername")
+    private WebElement firstMessageUsername;
+
+//    Select select = new Select(messageType);
 
     public ChatPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -27,19 +34,26 @@ public class ChatPage {
         messageText.sendKeys(message);
     }
 
-    public void say() {
-        select.selectByVisibleText("Say");
-    }
-
-    public void shout() {
-        select.selectByVisibleText("Shout");
-    }
-
-    public void whisper() {
-        select.selectByVisibleText("Whisper");
-    }
+//    public void say() {
+//        select.selectByVisibleText("Say");
+//    }
+//
+//    public void shout() {
+//        select.selectByVisibleText("Shout");
+//    }
+//
+//    public void whisper() {
+//        select.selectByVisibleText("Whisper");
+//    }
 
     public void clickSubmit() {
         submitButton.click();
+    }
+
+    public ChatMessage getFirstMessage() {
+        ChatMessage result = new ChatMessage();
+        result.setMessageText(firstChatMessage.getText());
+        result.setUsername(firstMessageUsername.getText());
+        return result;
     }
 }
